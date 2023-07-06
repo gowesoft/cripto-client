@@ -1,0 +1,26 @@
+<table>
+  <thead>
+    <tr>
+      <th>Symbol</th>
+      <th>Price</th>
+      <th>Prediction</th>
+      <th>Recomendación</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let crypto of cryptoData"
+        [ngClass]="{
+          'buy': getRecommendation(crypto.price, crypto.prediction) === 'Comprar',
+          'sell': getRecommendation(crypto.price, crypto.prediction) === 'Vender',
+          'hold': getRecommendation(crypto.price, crypto.prediction) === 'Mantener'
+        }">
+      <td>
+        <img src="{{crypto.image}}" alt="{{ crypto.symbol }} logo" width="25" height="25" class="crypto-logo">
+        {{ crypto.symbol.toUpperCase() }}
+      </td>
+      <td>{{ crypto.price }}</td>
+      <td>{{ crypto.prediction }}</td>
+      <td>{{ getRecommendation(crypto.price, crypto.prediction) }}</td>
+    </tr>
+  </tbody>
+</table>
